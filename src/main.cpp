@@ -2,6 +2,9 @@
 #include "geometrycentral/surface/meshio.h"
 #include "geometrycentral/surface/vertex_position_geometry.h"
 
+
+#include "geometrycentral/surface/direction_fields.h"
+
 #include "polyscope/polyscope.h"
 #include "polyscope/surface_mesh.h"
 
@@ -84,6 +87,18 @@ int main(int argc, char **argv) {
       geometry->inputVertexPositions, mesh->getFaceVertexList(),
       polyscopePermutations(*mesh));
 
+  // Set vertex tangent spaces
+  geometry->requireVertexTangentBasis();
+  VertexData<Vector3> vBasisX(*mesh);
+  for(Vertex v : mesh->vertices()) {
+    vBasisX[v] = geometry->vertexTangentBasis[v][0];
+  }
+  psMesh->setVertexTangentBasisX(vBasisX);
+
+  
+  auto vField = geometrycentral::surface::computeSmoothestVertexDirectionField(*geometry);
+  psMesh->addVertexIntrinsicVectorQuantity("VF", vField);
+  
   // Give control to the polyscope gui
   polyscope::show();
 
