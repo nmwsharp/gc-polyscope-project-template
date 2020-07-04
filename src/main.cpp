@@ -1,4 +1,4 @@
-#include "geometrycentral/surface/halfedge_mesh.h"
+#include "geometrycentral/surface/manifold_surface_mesh.h"
 #include "geometrycentral/surface/meshio.h"
 #include "geometrycentral/surface/vertex_position_geometry.h"
 
@@ -15,7 +15,7 @@ using namespace geometrycentral;
 using namespace geometrycentral::surface;
 
 // == Geometry-central data
-std::unique_ptr<HalfedgeMesh> mesh;
+std::unique_ptr<ManifoldSurfaceMesh> mesh;
 std::unique_ptr<VertexPositionGeometry> geometry;
 
 // Polyscope visualization handle, to quickly add data to the surface
@@ -79,7 +79,7 @@ int main(int argc, char **argv) {
   polyscope::state::userCallback = myCallback;
 
   // Load mesh
-  std::tie(mesh, geometry) = loadMesh(args::get(inputFilename));
+  std::tie(mesh, geometry) = readManifoldSurfaceMesh(args::get(inputFilename));
 
   // Register the mesh with polyscope
   psMesh = polyscope::registerSurfaceMesh(
