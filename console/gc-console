@@ -1,0 +1,2 @@
+cling -std=c++11 --nologo -l gc-polyscope-cling.h
+
