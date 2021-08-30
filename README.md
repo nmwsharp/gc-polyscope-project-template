@@ -31,3 +31,7 @@ Install CMake, and use either the CMake GUI or the command line interface (as on
 ### Edit the code
 
 Modify the main file `src/main.cpp` to start implementing your own algorithms. `CMakeLists.txt` contains a few comments for adding additional files.  
+
+## Interactive interpreter
+
+The `console` subdirectory contains instructions and an example for running geometry-central and Polyscope in an interactive C++ interpreter with `cling`.
