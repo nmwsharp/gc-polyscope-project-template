@@ -89,14 +89,15 @@ int main(int argc, char **argv) {
   // Set vertex tangent spaces
   geometry->requireVertexTangentBasis();
   VertexData<Vector3> vBasisX(*mesh);
+  VertexData<Vector3> vBasisY(*mesh);
   for (Vertex v : mesh->vertices()) {
     vBasisX[v] = geometry->vertexTangentBasis[v][0];
+    vBasisY[v] = geometry->vertexTangentBasis[v][1];
   }
-  psMesh->setVertexTangentBasisX(vBasisX);
 
   auto vField =
       geometrycentral::surface::computeSmoothestVertexDirectionField(*geometry);
-  psMesh->addVertexIntrinsicVectorQuantity("VF", vField);
+  psMesh->addVertexTangentVectorQuantity("VF", vField, vBasisX, vBasisY);
 
   // Give control to the polyscope gui
   polyscope::show();
