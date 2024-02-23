@@ -2,6 +2,8 @@ load("@bazel_tools//tools/build_defs/repo:git.bzl", "git_repository")
 load("@bazel_tools//tools/build_defs/repo:http.bzl", "http_archive")
 
 # Required by Polyscope.
+# TODO: https://github.com/bazelbuild/bazel-central-registry/issues/1306 will enable
+# defining this in MODULE.bazel.
 http_archive(
     name = "imgui-1.86",
     build_file_content = """
@@ -40,6 +42,8 @@ cc_library(
 )
 
 # Required by Polyscope.
+# TODO: https://github.com/bazelbuild/bazel-central-registry/issues/1305 will enable
+# defining this in MODULE.bazel.
 http_archive(
     name = "glfw-3.3.9",
     build_file_content = """
@@ -123,6 +127,8 @@ git_repository(
     remote = "https://github.com/phaedon/polyscope.git",
 )
 
+# TODO: Move this to the source repo once https://github.com/nmwsharp/geometry-central/pull/171 is merged.
+# Then move to MODULE once this is added to https://registry.bazel.build/.
 git_repository(
     name = "geometry_central",
     branch = "geom-bazel",
