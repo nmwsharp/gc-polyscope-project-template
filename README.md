@@ -23,6 +23,16 @@ make -j6
 
 Install CMake, and use either the CMake GUI or the command line interface (as on unix) to generate a Visual Studio solution.  Build the solution with Visual Studio.
 
+**Bazel**
+
+Install [Bazel](https://bazel.build/install) (version 7 or later to enable Bzlmod for loading external dependencies) and then run:
+
+```
+bazel run src:main external/geometry_central/test/assets/fox.ply
+```
+
+Note that with Bazel, you don't have to clone this project with the `--recursive` flag, since all dependencies are loaded at compile time.
+
 ### Run the code
 ```
 ./bin/gc_project /path/to/a/mesh
