@@ -1,0 +1,11 @@
+cc_binary(
+    name = "main",
+    srcs = ["main.cpp"],
+    data = [
+        "@geometry_central//test/assets",
+    ],
+    deps = [
+        "@geometry_central//:surface",
+        "@polyscope",
+    ],
+)
